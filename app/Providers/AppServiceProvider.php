@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\auth\AuthRepository;
-use App\Repositories\auth\AuthRepositoryInterface;
+use App\Repositories\auth\{AuthRepository, AuthRepositoryInterface};
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
