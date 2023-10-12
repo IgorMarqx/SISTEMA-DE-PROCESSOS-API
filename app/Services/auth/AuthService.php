@@ -2,7 +2,6 @@
 
 namespace App\Services\auth;
 
-use App\Http\Resources\auth\AuthResource;
 use App\Repositories\auth\AuthRepositoryInterface;
 
 class AuthService
