@@ -25,7 +25,7 @@ class CollectiveService
         return $this->collectiveRepository->createCollective($data);
     }
 
-    public function getCollectiveById($id): bool|Collective
+    public function getCollectiveById($id): Collective|null
     {
         return $this->collectiveRepository->getCollectiveById($id);
     }
@@ -38,7 +38,7 @@ class CollectiveService
             return false;
         }
 
-        if($collective->finish && $collective->progress === 0) {
+        if ($collective->finish && $collective->progress === 0) {
             return false;
         }
 
@@ -48,5 +48,27 @@ class CollectiveService
             'qtd_finish' => $collective->qtd_finish + 1,
             'updated_at' => now(),
         ]);
+    }
+
+    public function deleteCollective($id): bool|null
+    {
+        $collective = $this->getCollectiveById($id);
+
+        if (!$collective) {
+            return false;
+        }
+
+        return $this->collectiveRepository->deleteCollective($collective);
+    }
+
+    public function filterCollective($data): bool|LengthAwarePaginator
+    {
+        $collective = $this->collectiveRepository->filterCollective($data);
+
+        if($collective->isEmpty()) {
+            return false;
+        }
+
+        return $collective;
     }
 }
