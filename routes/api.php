@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\api\auth\AuthController;
+use App\Http\Controllers\api\filter\CollectiveFilterController;
 use App\Http\Controllers\api\process\{CollectiveController, IndividualController};
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\api\filter\CollectiveFilterController;
 
 Route::get('/ping', function () {
     return ['pong' => true];
