@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\api\auth\AuthController;
+use App\Http\Controllers\api\process\{CollectiveController, IndividualController};
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\api\process\CollectiveController;
-use \App\Http\Controllers\api\process\IndividualController;
+use \App\Http\Controllers\api\filter\CollectiveFilterController;
 
 Route::get('/ping', function () {
     return ['pong' => true];
@@ -16,9 +16,11 @@ Route::get('unauthorized', function () {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['api.auth'])->group(function () {
+    Route::put('collective/{id}/finish', [CollectiveController::class, 'finishedCollective']);
+    Route::get('collective/filter', [CollectiveFilterController::class, 'filterCollective']);
 
     Route::apiResources([
         'collective' => CollectiveController::class,
-        'individual' => IndividualController::class
+        'individual' => IndividualController::class,
     ]);
 });
