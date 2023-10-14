@@ -36,7 +36,7 @@ class CollectiveRepository implements CollectiveRepositoryInterface
         ]);
     }
 
-    public function getCollectiveById($id): bool|Collective
+    public function getCollectiveById($id): Collective|null
     {
         return Collective::find($id);
     }
@@ -51,13 +51,23 @@ class CollectiveRepository implements CollectiveRepositoryInterface
         return $collective->update($data);
     }
 
-    public function deleteCollective()
+    public function deleteCollective(Collective $collective): bool|null
     {
-        // TODO: Implement deleteCollective() method.
+        return $collective->delete();
     }
 
-    public function filterCollective($data)
+    public function filterCollective($data): bool|LengthAwarePaginator
     {
-        // TODO: Implement filterCollective() method.
+        return Collective::where('id', 'like', "%$data->collectiveFilter%")
+            ->orWhere('name', 'like', "%$data->collectiveFilter%")
+            ->orWhere('jurisdiction', 'like', "%$data->collectiveFilter%")
+            ->orWhere('cause_value', 'like', "%$data->collectiveFilter%")
+            ->orWhere('priority', 'like', "%$data->collectiveFilter%")
+            ->orWhere('judgmental_organ', 'like', "%$data->collectiveFilter%")
+            ->orWhere('email_coorporative', 'like', "%$data->collectiveFilter%")
+            ->orWhere('email_client', 'like', "%$data->collectiveFilter%")
+            ->orWhere('created_at', 'like', "%$data->collectiveFilter%")
+            ->orWhere('updated_at', 'like', "%$data->collectiveFilter%")
+            ->paginate(5);
     }
 }
