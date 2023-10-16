@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\api\process;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\collective\CollectiveRequest;
+use App\Http\Requests\process\ProcessRequest;
 use App\Http\Resources\GlobalResource;
-use App\Services\collective\CollectiveService;
-use Illuminate\Http\Request;
+use App\Services\process\ProcessService;
 
-class CollectiveController extends Controller
+class ProcessController extends Controller
 {
-    protected CollectiveService $collectiveService;
+    protected ProcessService $collectiveService;
 
-    public function __construct(CollectiveService $collectiveService)
+    public function __construct(ProcessService $collectiveService)
     {
         $this->collectiveService = $collectiveService;
     }
@@ -36,7 +35,7 @@ class CollectiveController extends Controller
      * Store a newly created resource in storage.
      * @throws \Exception
      */
-    public function store(CollectiveRequest $request): GlobalResource
+    public function store(ProcessRequest $request): GlobalResource
     {
         $this->collectiveService->createCollective($request);
 
@@ -64,10 +63,21 @@ class CollectiveController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @throws \Exception
      */
-    public function update(Request $request, string $id)
+    public function update(ProcessRequest $request, string $id): GlobalResource
     {
-        //
+        $collective = $this->collectiveService->updateCollective($id, $request);
+
+        if (!$collective) {
+            return new GlobalResource(['error' => true, 'message' => 'Process process not found'], 404);
+        }
+
+        try {
+            return new GlobalResource(['error' => false, 'message' => 'Successfully updated collective process'], 200);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     /**
@@ -78,7 +88,7 @@ class CollectiveController extends Controller
         $collective = $this->collectiveService->finishedCollective($id);
 
         if (!$collective) {
-            return new GlobalResource(['error' => true, 'message' => 'Collective process already finished'], 400);
+            return new GlobalResource(['error' => true, 'message' => 'Process process already finished'], 400);
         }
 
         try {
@@ -97,7 +107,7 @@ class CollectiveController extends Controller
         $collective = $this->collectiveService->deleteCollective($id);
 
         if (!$collective) {
-            return new GlobalResource(['error' => true, 'message' => 'Collective process not found'], 404);
+            return new GlobalResource(['error' => true, 'message' => 'Process process not found'], 404);
         }
 
         try {
