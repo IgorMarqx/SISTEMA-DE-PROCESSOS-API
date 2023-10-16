@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Collective extends Model
+class Process extends Model
 {
     use HasFactory;
 
@@ -32,5 +32,6 @@ class Collective extends Model
         'progress',
         'finish',
         'update',
+        'type_process',
     ];
 }
