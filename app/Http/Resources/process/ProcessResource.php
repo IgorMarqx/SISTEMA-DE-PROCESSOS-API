@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\collective;
+namespace App\Http\Resources\process;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CollectiveResource extends JsonResource
+class ProcessResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
