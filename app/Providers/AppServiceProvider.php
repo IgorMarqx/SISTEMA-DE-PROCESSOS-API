@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Repositories\auth\{AuthRepository, AuthRepositoryInterface};
-use App\Repositories\collective\{CollectiveRepository, CollectiveRepositoryInterface};
 use App\Repositories\individual\{IndividualRepository, IndividualRepositoryInterface};
+use App\Repositories\process\{ProcessRepository, ProcessRepositoryInterface};
 use Illuminate\Support\Facades\{Schema, Validator};
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(AuthRepositoryInterface::class, AuthRepository::class);
-        $this->app->singleton(CollectiveRepositoryInterface::class, CollectiveRepository::class);
+        $this->app->singleton(ProcessRepositoryInterface::class, ProcessRepository::class);
         $this->app->singleton(IndividualRepositoryInterface::class, IndividualRepository::class);
     }
 
