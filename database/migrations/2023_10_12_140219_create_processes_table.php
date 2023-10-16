@@ -10,7 +10,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('collectives', function (Blueprint $table) {
+        Schema::create('processes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('user_id');
@@ -34,6 +34,7 @@ return new class () extends Migration {
             $table->boolean('progress')->default(0);
             $table->boolean('finish')->default(0);
             $table->boolean('update')->default(0);
+            $table->string('type_process');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
