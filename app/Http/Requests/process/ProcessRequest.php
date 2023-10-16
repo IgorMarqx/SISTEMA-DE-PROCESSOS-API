@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\collective;
+namespace App\Http\Requests\process;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CollectiveRequest extends FormRequest
+class ProcessRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -33,6 +33,7 @@ class CollectiveRequest extends FormRequest
             'url_notices'        => ['required', 'url', 'max:2048'],
             'email_coorporative' => ['required', 'email'],
             'email_client'       => ['required', 'email'],
+            'type_process'       => ['required', 'string'],
         ];
     }
 
