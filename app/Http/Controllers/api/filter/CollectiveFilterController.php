@@ -5,13 +5,13 @@ namespace App\Http\Controllers\api\filter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\filter\CollectiveFilterRequest;
 use App\Http\Resources\GlobalResource;
-use App\Services\collective\CollectiveService;
+use App\Services\process\ProcessService;
 
 class CollectiveFilterController extends Controller
 {
-    protected CollectiveService $collectiveService;
+    protected ProcessService $collectiveService;
 
-    public function __construct(CollectiveService $collectiveService)
+    public function __construct(ProcessService $collectiveService)
     {
         $this->collectiveService = $collectiveService;
     }
@@ -24,7 +24,7 @@ class CollectiveFilterController extends Controller
         $collective = $this->collectiveService->filterCollective($request);
 
         if(!$collective) {
-            return new GlobalResource(['error' => true, 'message' => 'Collective process not found'], 404);
+            return new GlobalResource(['error' => true, 'message' => 'Process process not found'], 404);
         }
 
         try {
