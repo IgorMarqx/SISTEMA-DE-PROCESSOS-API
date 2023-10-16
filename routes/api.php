@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\filter\CollectiveFilterController;
-use App\Http\Controllers\api\process\{CollectiveController, IndividualController};
+use App\Http\Controllers\api\process\{IndividualController, ProcessController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/ping', function () {
@@ -16,11 +16,11 @@ Route::get('unauthorized', function () {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['api.auth'])->group(function () {
-    Route::put('collective/{id}/finish', [CollectiveController::class, 'finishedCollective']);
+    Route::put('collective/{id}/finish', [ProcessController::class, 'finishedCollective']);
     Route::get('collective/filter', [CollectiveFilterController::class, 'filterCollective']);
 
     Route::apiResources([
-        'collective' => CollectiveController::class,
+        'collective' => ProcessController::class,
         'individual' => IndividualController::class,
     ]);
 });
