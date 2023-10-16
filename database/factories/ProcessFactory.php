@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CollectiveFactory extends Factory
+class ProcessFactory extends Factory
 {
     protected array $statesBR = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
@@ -19,6 +19,8 @@ class CollectiveFactory extends Factory
     protected array $priority = ['High', 'Medium', 'Low'];
 
     protected array $competence = ['JEF - JP', 'TRE - DF', 'TRF - 1ª Região'];
+
+    protected array $type_process = ['collective', 'individual'];
 
     /**
      * Define the model's default state.
@@ -52,6 +54,7 @@ class CollectiveFactory extends Factory
             'progress'           => fake()->boolean(),
             'finish'             => fake()->boolean(),
             'update'             => fake()->boolean(),
+            'type_process'       => fake()->randomElement($this->type_process),
         ];
     }
 }
