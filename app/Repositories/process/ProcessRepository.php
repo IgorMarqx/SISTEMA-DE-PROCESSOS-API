@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Repositories\collective;
+namespace App\Repositories\process;
 
-use App\Models\Collective;
+use App\Models\Process;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class CollectiveRepository implements CollectiveRepositoryInterface
+class ProcessRepository implements ProcessRepositoryInterface
 {
     public function getAll(): LengthAwarePaginator
     {
-        return Collective::paginate(5);
+        return Process::paginate(5);
     }
 
-    public function createCollective($data): Collective
+    public function createCollective($data): Process
     {
-        return Collective::create([
+        return Process::create([
             'name'               => $data['name'],
             'user_id'            => $data['user_id'],
             'lawyer_id'          => $data['lawyer_id'],
@@ -33,32 +34,33 @@ class CollectiveRepository implements CollectiveRepositoryInterface
             'email_coorporative' => $data['email_coorporative'],
             'email_client'       => $data['email_client'],
             'progress'           => 1,
+            'type_process'       => $data['type_process'],
         ]);
     }
 
-    public function getCollectiveById($id): Collective|null
+    public function getCollectiveById($id): Process|null
     {
-        return Collective::find($id);
+        return Process::find($id);
     }
 
-    public function updateCollective($data)
-    {
-        // TODO: Implement updateCollective() method.
-    }
-
-    public function finishedCollective(Collective $collective, $data): bool
+    public function updateCollective(Process $collective, $data): bool|Collection
     {
         return $collective->update($data);
     }
 
-    public function deleteCollective(Collective $collective): bool|null
+    public function finishedCollective(Process $collective, $data): bool
+    {
+        return $collective->update($data);
+    }
+
+    public function deleteCollective(Process $collective): bool|null
     {
         return $collective->delete();
     }
 
     public function filterCollective($data): bool|LengthAwarePaginator
     {
-        return Collective::where('id', 'like', "%$data->collectiveFilter%")
+        return Process::where('id', 'like', "%$data->collectiveFilter%")
             ->orWhere('name', 'like', "%$data->collectiveFilter%")
             ->orWhere('jurisdiction', 'like', "%$data->collectiveFilter%")
             ->orWhere('cause_value', 'like', "%$data->collectiveFilter%")
