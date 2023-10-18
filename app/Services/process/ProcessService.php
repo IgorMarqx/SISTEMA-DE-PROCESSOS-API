@@ -30,38 +30,19 @@ class ProcessService
         return $this->collectiveRepository->getCollectiveById($id);
     }
 
-    public function updateCollective($id, $data): bool|Process
+    public function updateCollective($id, $data): bool|Process|array
     {
         $collective = $this->getCollectiveById($id);
+
+        if($collective['type_process'] !== $data['type_process']) {
+            return ['error' => true, 'httpCode' => 400];
+        }
 
         if (!$collective) {
             return false;
         }
 
-        return $this->collectiveRepository->updateCollective($collective, [
-            'name'               => $data['name'],
-            'user_id'            => $data['user_id'],
-            'lawyer_id'          => $data['lawyer_id'],
-            'subject'            => $data['subject'],
-            'jurisdiction'       => $data['jurisdiction'],
-            'cause_value'        => $data['cause_value'],
-            'justice_secret'     => $data['justice_secret'],
-            'free_justice'       => $data['free_justice'],
-            'tutelary'           => $data['tutelary'],
-            'priority'           => $data['priority'],
-            'judgmental_organ'   => $data['judgmental_organ'],
-            'judicial_office'    => $data['judicial_office'],
-            'competence'         => $data['competence'],
-            'url_collective'     => $data['url_collective'],
-            'url_notices'        => $data['url_notices'],
-            'email_coorporative' => $data['email_coorporative'],
-            'email_client'       => $data['email_client'],
-            'progress'           => 0,
-            'finish'             => 0,
-            'update'             => 1,
-            'qtd_update'         => $collective->qtd_update + 1,
-            'type_process'       => $data['type_process'],
-        ]);
+        return $this->collectiveRepository->updateCollective($collective, $data);
     }
 
     public function finishedCollective($id): bool
