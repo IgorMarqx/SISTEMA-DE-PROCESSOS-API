@@ -69,12 +69,16 @@ class ProcessController extends Controller
     {
         $collective = $this->collectiveService->updateCollective($id, $request);
 
+        if(isset($collective['httpCode'])) {
+            return new GlobalResource(['error' => true, 'message' => 'You cant change the type process'], 400);
+        }
+
         if (!$collective) {
             return new GlobalResource(['error' => true, 'message' => 'Process process not found'], 404);
         }
 
         try {
-            return new GlobalResource(['error' => false, 'message' => 'Successfully updated collective process'], 200);
+            return new GlobalResource(['error' => false, 'message' => 'Successfully updated process'], 200);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
