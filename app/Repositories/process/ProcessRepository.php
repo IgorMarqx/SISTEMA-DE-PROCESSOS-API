@@ -45,7 +45,30 @@ class ProcessRepository implements ProcessRepositoryInterface
 
     public function updateCollective(Process $collective, $data): bool|Collection
     {
-        return $collective->update($data);
+        return $collective->update([
+            'name'               => $data['name'],
+            'user_id'            => $data['user_id'],
+            'lawyer_id'          => $data['lawyer_id'],
+            'subject'            => $data['subject'],
+            'jurisdiction'       => $data['jurisdiction'],
+            'cause_value'        => $data['cause_value'],
+            'justice_secret'     => $data['justice_secret'],
+            'free_justice'       => $data['free_justice'],
+            'tutelary'           => $data['tutelary'],
+            'priority'           => $data['priority'],
+            'judgmental_organ'   => $data['judgmental_organ'],
+            'judicial_office'    => $data['judicial_office'],
+            'competence'         => $data['competence'],
+            'url_collective'     => $data['url_collective'],
+            'url_notices'        => $data['url_notices'],
+            'email_coorporative' => $data['email_coorporative'],
+            'email_client'       => $data['email_client'],
+            'progress'           => 0,
+            'finish'             => 0,
+            'update'             => 1,
+            'qtd_update'         => $collective->qtd_update + 1,
+            'type_process'       => $data['type_process'],
+        ]);
     }
 
     public function finishedCollective(Process $collective, $data): bool
