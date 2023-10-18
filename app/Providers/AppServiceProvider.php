@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Repositories\auth\{AuthRepository, AuthRepositoryInterface};
-use App\Repositories\individual\{IndividualRepository, IndividualRepositoryInterface};
 use App\Repositories\process\{ProcessRepository, ProcessRepositoryInterface};
 use App\Repositories\user\{UserRepository, UserRepositoryInterface};
 use Illuminate\Support\Facades\{Schema, Validator};
