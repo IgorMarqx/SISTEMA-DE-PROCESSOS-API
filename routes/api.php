@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\filter\CollectiveFilterController;
-use App\Http\Controllers\api\process\{IndividualController, ProcessController};
+use App\Http\Controllers\api\process\{ProcessController};
+use App\Http\Controllers\api\user\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/ping', function () {
@@ -21,6 +22,6 @@ Route::middleware(['api.auth'])->group(function () {
 
     Route::apiResources([
         'collective' => ProcessController::class,
-        'individual' => IndividualController::class,
+        'user'       => UserController::class,
     ]);
 });
