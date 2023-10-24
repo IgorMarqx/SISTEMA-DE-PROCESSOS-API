@@ -22,6 +22,10 @@ class ApiAuthenticate
             if (!$user) {
                 return redirect()->route('api.unauthorized');
             }
+
+            if ($user->token != JWTAuth::getToken()) {
+                return redirect()->route('api.unauthorized');
+            }
         } catch (\Exception $e) {
             return redirect()->route('api.unauthorized');
         }
