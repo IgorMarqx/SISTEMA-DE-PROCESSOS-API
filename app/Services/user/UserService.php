@@ -35,8 +35,14 @@ class UserService
         return $this->userRepository->updateUser($user, $data);
     }
 
-    public function deleteUser($user)
+    public function deleteUser($id): bool
     {
+        $user = $this->userRepository->getUserById($id);
+
+        if(!$user) {
+            return false;
+        }
+
         return $this->userRepository->deleteUser($user);
     }
 
