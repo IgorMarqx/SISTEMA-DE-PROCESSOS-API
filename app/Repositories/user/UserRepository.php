@@ -4,6 +4,7 @@ namespace App\Repositories\user;
 
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -12,9 +13,20 @@ class UserRepository implements UserRepositoryInterface
         return User::paginate(5);
     }
 
-    public function createUser($data)
+    public function createUser($data): User
     {
-        // TODO: Implement createUser() method.
+        return User::create([
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'admin'     => $data['admin'],
+            'organ'     => $data['organ'],
+            'office'    => $data['office'],
+            'capacity'  => $data['capacity'],
+            'telephone' => $data['telephone'],
+            'cpf'       => $data['cpf'],
+            'oab'       => $data['oab'],
+        ]);
     }
 
     public function getUserById($id): User|null
@@ -27,9 +39,9 @@ class UserRepository implements UserRepositoryInterface
         // TODO: Implement updateUser() method.
     }
 
-    public function deleteUser(User $user)
+    public function deleteUser(User $user): bool
     {
-        // TODO: Implement deleteUser() method.
+        return $user->delete();
     }
 
     public function filterUser($data)
