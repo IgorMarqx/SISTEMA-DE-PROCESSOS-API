@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
             'name'       => 'Igor Marques',
             'email'      => 'igor@gmail.com',
             'password'   => Hash::make('12345'),
+            'cpf'        => fake()->numberBetween(10000, 20000),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
