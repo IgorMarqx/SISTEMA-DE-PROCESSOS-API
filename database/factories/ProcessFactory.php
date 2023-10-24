@@ -29,12 +29,10 @@ class ProcessFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::factory()->create();
-
         return [
             'name'               => fake()->name(),
-            'user_id'            => $user->id,
-            'lawyer_id'          => $user->id,
+            'user_id'            => User::factory(),
+            'lawyer_id'          => User::factory(),
             'subject'            => fake()->word(),
             'jurisdiction'       => fake()->randomElement($this->statesBR),
             'cause_value'        => fake()->randomFloat(2, 0, 100000),
