@@ -5,14 +5,13 @@ use App\Http\Controllers\api\filter\CollectiveFilterController;
 use App\Http\Controllers\api\process\{ProcessController};
 use App\Http\Controllers\api\user\UserController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\api\UnauthorizedController;
 
 Route::get('/ping', function () {
     return ['pong' => true];
 });
 
-Route::get('unauthorized', function () {
-    return response()->json(['error' => 'Unauthorized'], 401);
-})->name('api.unauthorized');
+Route::get('unauthorized', [UnauthorizedController::class, 'unauthorized'])->name('api.unauthorized');
 
 Route::post('/login', [AuthController::class, 'login']);
 
