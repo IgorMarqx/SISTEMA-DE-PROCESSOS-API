@@ -34,9 +34,20 @@ class UserRepository implements UserRepositoryInterface
         return User::find($id);
     }
 
-    public function updateUser(User $user, $data)
+    public function updateUser(User $user, $data): bool
     {
-        // TODO: Implement updateUser() method.
+        return $user->update([
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'admin'     => $data['admin'],
+            'organ'     => $data['organ'],
+            'office'    => $data['office'],
+            'capacity'  => $data['capacity'],
+            'telephone' => $data['telephone'],
+            'cpf'       => $data['cpf'],
+            'oab'       => $data['oab'],
+        ]);
     }
 
     public function deleteUser(User $user): bool
