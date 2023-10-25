@@ -6,6 +6,7 @@ use App\Http\Controllers\api\process\{ProcessController};
 use App\Http\Controllers\api\user\UserController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\api\UnauthorizedController;
+use \App\Http\Controllers\api\attachment\AttachmentController;
 
 Route::get('/ping', function () {
     return ['pong' => true];
@@ -18,6 +19,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['api.auth'])->group(function () {
     Route::put('collective/{id}/finish', [ProcessController::class, 'finishedCollective']);
     Route::get('collective/filter', [CollectiveFilterController::class, 'filterCollective']);
+
+    Route::post('attachment/{id}/upload', [AttachmentController::class, 'uploadAttachment']);
 
     Route::apiResources([
         'collective' => ProcessController::class,
