@@ -3,19 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Resources\GlobalResource;
 
 class UnauthorizedController extends Controller
 {
-    public function unauthorized(): JsonResponse
+    public function unauthorized(): GlobalResource
     {
-        return response()->json([
-            'error' => true,
-            'message' => 'Unauthorized',
-            'timestamps' => now()->format('Y-m-d H:i:s'),
-            'method' => request()->method(),
-            'status'  => 401,
-        ], 401);
+        return new GlobalResource(['error' => true,'message' => 'Unauthorized',], 401);
     }
 }
