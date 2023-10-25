@@ -30,8 +30,14 @@ class UserService
         return $this->userRepository->getUserById($id);
     }
 
-    public function updateUser($user, $data)
+    public function updateUser($id, $data): bool
     {
+        $user = $this->userRepository->getUserById($id);
+
+        if(!$user) {
+            return false;
+        }
+
         return $this->userRepository->updateUser($user, $data);
     }
 
