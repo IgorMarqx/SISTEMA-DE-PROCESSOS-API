@@ -68,17 +68,28 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @throws \Exception
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id): GlobalResource
     {
-        //
+        $user = $this->userService->updateUser($id, $request);
+
+        if(!$user){
+            return new GlobalResource(['error' => true, 'message' => 'User not found'], 404);
+        }
+
+        try {
+            return new GlobalResource(['error' => false, 'message' => 'Success updating user'], 200);
+        }catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @throws \Exception
      */
-    public function destroy(string $id)
+    public function destroy(string $id): GlobalResource
     {
         $user = $this->userService->deleteUser($id);
 
