@@ -25,6 +25,8 @@ class AttachmentFactory extends Factory
             'user_id' => User::factory(),
             'type_process' => fake()->randomElement($this->type_process),
             'path' => fake()->filePath(),
+            'type' => fake()->fileExtension(),
+            'size' => fake()->randomNumber(2),
         ];
     }
 }
