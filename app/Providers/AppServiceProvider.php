@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Process;
 use App\Models\User;
+use App\Repositories\attachment\AttachmentRepository;
+use App\Repositories\attachment\AttachmentRepositoryInterface;
 use App\Repositories\auth\{AuthRepository, AuthRepositoryInterface};
 use App\Repositories\process\{ProcessRepository, ProcessRepositoryInterface};
 use App\Repositories\user\{UserRepository, UserRepositoryInterface};
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->singleton(ProcessRepositoryInterface::class, ProcessRepository::class);
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(AttachmentRepositoryInterface::class, AttachmentRepository::class);
     }
 
     /**
@@ -30,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('user_exist', function ($attribute, $value) {
             return User::where('id', $value)->exists();
+        });
+
+        Validator::extend('process_exist', function ($attribute, $value) {
+            return Process::where('id', $value)->exists();
         });
 
     }
