@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('type_process');
             $table->string('path');
+            $table->string('type');
+            $table->string('size');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
