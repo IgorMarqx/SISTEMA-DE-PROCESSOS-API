@@ -6,7 +6,7 @@ use App\Models\Attachment;
 
 class AttachmentRepository implements AttachmentRepositoryInterface
 {
-    public function uploadAttachment($data, $receivedFile)
+    public function uploadAttachment($data, $receivedFile): Attachment
     {
         return Attachment::create([
             'title' => $receivedFile->getClientOriginalName(),
@@ -19,15 +19,18 @@ class AttachmentRepository implements AttachmentRepositoryInterface
         ]);
     }
 
-    public function deleteAttachment($id)
+    public function getAttachmentId($id): Attachment|null
     {
+        return Attachment::find($id);
     }
 
-    public function downloadAttachment($id)
+    public function deleteAttachment(Attachment $attachment): bool|null
     {
+        return $attachment->delete();
     }
 
-    public function getAttachment()
+    public function getAllAttachmentByProcessId($id)
     {
+        return Attachment::where('process_id', $id)->paginate(5);
     }
 }
