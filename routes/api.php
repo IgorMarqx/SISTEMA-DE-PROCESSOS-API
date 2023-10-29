@@ -20,7 +20,11 @@ Route::middleware(['api.auth'])->group(function () {
     Route::put('collective/{id}/finish', [ProcessController::class, 'finishedCollective']);
     Route::get('collective/filter', [CollectiveFilterController::class, 'filterCollective']);
 
+    Route::get('attachment/{id}', [AttachmentController::class, 'getAttachmentId']);
+    Route::get('attachment/{id}/allAttachment', [AttachmentController::class, 'getAllAttachmentByProcessId']);
+    Route::get('attachment/{id}/download', [AttachmentController::class, 'downloadAttachment']);
     Route::post('attachment/{id}/upload', [AttachmentController::class, 'uploadAttachment']);
+    Route::delete('attachment/{id}/delete', [AttachmentController::class, 'deleteAttachment']);
 
     Route::apiResources([
         'collective' => ProcessController::class,
