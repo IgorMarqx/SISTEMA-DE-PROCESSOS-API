@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\api\attachment;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\attachment\AllAttachmentByProcessIdRequest;
 use App\Http\Requests\attachment\AttachmentRequest;
 use App\Http\Resources\GlobalResource;
 use App\Services\attachment\AttachmentService;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use function PHPUnit\Framework\isEmpty;
 
 class AttachmentController extends Controller
 {
