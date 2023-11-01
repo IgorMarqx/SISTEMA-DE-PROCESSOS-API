@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Process;
-use App\Models\User;
-use App\Repositories\attachment\AttachmentRepository;
-use App\Repositories\attachment\AttachmentRepositoryInterface;
+use App\Models\{Process, User};
+use App\Repositories\attachment\{AttachmentRepository, AttachmentRepositoryInterface};
 use App\Repositories\auth\{AuthRepository, AuthRepositoryInterface};
 use App\Repositories\process\{ProcessRepository, ProcessRepositoryInterface};
 use App\Repositories\user\{UserRepository, UserRepositoryInterface};
