@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Process;
-use App\Models\User;
+use App\Models\{Process, User};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,13 +19,13 @@ class AttachmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
-            'process_id' => Process::factory(),
-            'user_id' => User::factory(),
+            'title'        => fake()->title(),
+            'process_id'   => Process::factory(),
+            'user_id'      => User::factory(),
             'type_process' => fake()->randomElement($this->type_process),
-            'path' => fake()->filePath(),
-            'type' => fake()->fileExtension(),
-            'size' => fake()->randomNumber(2),
+            'path'         => fake()->filePath(),
+            'type'         => fake()->fileExtension(),
+            'size'         => fake()->randomNumber(2),
         ];
     }
 }
