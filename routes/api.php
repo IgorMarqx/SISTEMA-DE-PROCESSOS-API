@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\api\attachment\AttachmentController;
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\filter\CollectiveFilterController;
 use App\Http\Controllers\api\process\{ProcessController};
+use App\Http\Controllers\api\requeriment\RequerimentController;
+use App\Http\Controllers\api\UnauthorizedController;
 use App\Http\Controllers\api\user\UserController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\api\UnauthorizedController;
-use \App\Http\Controllers\api\attachment\AttachmentController;
 
 Route::get('/ping', function () {
     return ['pong' => true];
@@ -27,7 +28,8 @@ Route::middleware(['api.auth'])->group(function () {
     Route::delete('attachment/{id}/delete', [AttachmentController::class, 'deleteAttachment']);
 
     Route::apiResources([
-        'collective' => ProcessController::class,
-        'user'       => UserController::class,
+        'collective'  => ProcessController::class,
+        'user'        => UserController::class,
+        'requeriment' => RequerimentController::class,
     ]);
 });
