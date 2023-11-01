@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\api\requeriment;
 
 use App\Http\Controllers\Controller;
+use App\Services\requeriment\RequerimentService;
 use Illuminate\Http\Request;
 
 class RequerimentController extends Controller
 {
+    private RequerimentService $requerimentService;
+
+    public function __construct(RequerimentService $requerimentService)
+    {
+        $this->requerimentService = $requerimentService;
+    }
     /**
      * Display a listing of the resource.
      */
