@@ -22,11 +22,11 @@ class AttachmentController extends Controller
      */
     public function uploadAttachment(AttachmentRequest $request): GlobalResource
     {
-       $this->attachmentService->uploadAttachment($request, $request->file('file'));
+        $this->attachmentService->uploadAttachment($request, $request->file('file'));
 
         try {
             return new GlobalResource(['error' => false, 'message' => 'Successfully uploaded attachment'], 201);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
@@ -38,13 +38,13 @@ class AttachmentController extends Controller
     {
         $attachment = $this->attachmentService->getAttachmentId($id);
 
-        if(!$attachment){
+        if(!$attachment) {
             return new GlobalResource(['error' => true, 'message' => 'Attachment not found'], 404);
         }
 
         try {
             return new GlobalResource(['error' => false, 'message' => $attachment], 200);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
@@ -56,13 +56,13 @@ class AttachmentController extends Controller
     {
         $attachment = $this->attachmentService->deleteAttachment($id);
 
-        if(!$attachment){
+        if(!$attachment) {
             return new GlobalResource(['error' => true, 'message' => 'Attachment not found'], 404);
         }
 
         try {
             return new GlobalResource(['error' => false, 'message' => 'Successfully deleted attachment'], 200);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
@@ -74,13 +74,13 @@ class AttachmentController extends Controller
     {
         $attachment = $this->attachmentService->getAttachmentId($id);
 
-        if(!$attachment){
+        if(!$attachment) {
             return new GlobalResource(['error' => true, 'message' => 'Attachment not found'], 404);
         }
 
         try {
-            return response()->download($attachment->path. $attachment->title);
-        }catch (\Exception $e) {
+            return response()->download($attachment->path . $attachment->title);
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
@@ -94,7 +94,7 @@ class AttachmentController extends Controller
 
         try {
             return new GlobalResource(['error' => false, 'message' => $attachment], 200);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
