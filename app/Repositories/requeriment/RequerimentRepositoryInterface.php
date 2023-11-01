@@ -12,4 +12,5 @@ interface RequerimentRepositoryInterface
     public function updateRequeriment(Requeriment $requeriment, string $id);
     public function deleteRequeriment(Requeriment $requeriment,string $id);
     public function filterRequeriment(array $data);
+    public function downloadRequerimnet(array $data, string $id);
 }
