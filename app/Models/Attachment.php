@@ -16,6 +16,6 @@ class Attachment extends Model
         'type_process',
         'path',
         'type',
-        'size'
+        'size',
     ];
 }
