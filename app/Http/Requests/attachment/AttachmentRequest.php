@@ -16,9 +16,9 @@ class AttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-            'process_id' => ['required', 'numeric', 'process_exist'],
-            'user_id' => ['required', 'numeric', 'user_exist'],
+            'file'         => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+            'process_id'   => ['required', 'numeric', 'process_exist'],
+            'user_id'      => ['required', 'numeric', 'user_exist'],
             'type_process' => ['required', 'string'],
         ];
     }
