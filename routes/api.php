@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\api\attachment\AttachmentController;
 use App\Http\Controllers\api\auth\AuthController;
-use App\Http\Controllers\api\filter\CollectiveFilterController;
+use App\Http\Controllers\api\filter\{CollectiveFilterController, RequerimentFilterController};
 use App\Http\Controllers\api\process\{ProcessController};
-use App\Http\Controllers\api\requeriment\RequerimentController;
+use App\Http\Controllers\api\requeriment\{RequerimentController, RequerimentDownloadController};
 use App\Http\Controllers\api\UnauthorizedController;
 use App\Http\Controllers\api\user\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +26,9 @@ Route::middleware(['api.auth'])->group(function () {
     Route::get('attachment/{id}/download', [AttachmentController::class, 'downloadAttachment']);
     Route::post('attachment/{id}/upload', [AttachmentController::class, 'uploadAttachment']);
     Route::delete('attachment/{id}/delete', [AttachmentController::class, 'deleteAttachment']);
+
+    Route::post('requeriment/{id}/download', [RequerimentDownloadController::class, 'uploadRequeriment']);
+    Route::get('requeriment/filter', [RequerimentFilterController::class, 'filterRequeriment']);
 
     Route::apiResources([
         'collective'  => ProcessController::class,
