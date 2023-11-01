@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\user\UserRequest;
 use App\Http\Resources\GlobalResource;
 use App\Services\user\UserService;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -74,13 +73,13 @@ class UserController extends Controller
     {
         $user = $this->userService->updateUser($id, $request);
 
-        if(!$user){
+        if(!$user) {
             return new GlobalResource(['error' => true, 'message' => 'User not found'], 404);
         }
 
         try {
             return new GlobalResource(['error' => false, 'message' => 'Success updating user'], 200);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
