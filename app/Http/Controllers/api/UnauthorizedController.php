@@ -9,6 +9,6 @@ class UnauthorizedController extends Controller
 {
     public function unauthorized(): GlobalResource
     {
-        return new GlobalResource(['error' => true,'message' => 'Unauthorized',], 401);
+        return new GlobalResource(['error' => true, 'message' => 'Unauthorized', ], 401);
     }
 }
