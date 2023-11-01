@@ -17,7 +17,7 @@ class AttachmentService
     public function uploadAttachment($request, $receivedFile): Attachment
     {
         return $this->attachmentRepository->uploadAttachment($request, $receivedFile);
-//        $receivedFile->storeAs('public/attachments', $receivedFile->getClientOriginalName());
+        //        $receivedFile->storeAs('public/attachments', $receivedFile->getClientOriginalName());
     }
 
     public function getAttachmentId($id): Attachment|null
@@ -29,7 +29,7 @@ class AttachmentService
     {
         $attachment = $this->attachmentRepository->getAttachmentId($id);
 
-        if(!$attachment){
+        if(!$attachment) {
             return false;
         }
 
