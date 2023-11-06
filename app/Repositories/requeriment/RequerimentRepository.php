@@ -3,22 +3,23 @@
 namespace App\Repositories\requeriment;
 
 use App\Models\Requeriment;
+use Illuminate\Database\Eloquent\Collection;
 
 class RequerimentRepository implements RequerimentRepositoryInterface
 {
-    public function getAll()
+    public function getAll(): Collection
     {
         return Requeriment::all();
     }
 
-    public function createRequeriment(array $data)
+    public function createRequeriment(array $data): bool
     {
         return Requeriment::create($data);
     }
 
-    public function getRequerimentById(string $id)
+    public function getRequerimentById(string $id): Collection|null
     {
-        // TODO: Implement getRequerimentById() method.
+        return Requeriment::find($id);
     }
     public function updateRequeriment(Requeriment $requeriment, string $id)
     {
