@@ -3,6 +3,7 @@
 namespace App\Services\requeriment;
 
 use App\Repositories\requeriment\RequerimentRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class RequerimentService
 {
@@ -13,17 +14,17 @@ class RequerimentService
         $this->requerimentRepository = $requerimentRepository;
     }
 
-    public function getAll()
+    public function getAll(): Collection
     {
         return $this->requerimentRepository->getAll();
     }
 
-    public function createRequeriment(array $data)
+    public function createRequeriment(array $data): bool
     {
         return $this->requerimentRepository->createRequeriment($data);
     }
 
-    public function getRequerimentById(string $id)
+    public function getRequerimentById(string $id): Collection|null
     {
         return $this->requerimentRepository->getRequerimentById($id);
     }
