@@ -3,12 +3,13 @@
 namespace App\Repositories\requeriment;
 
 use App\Models\Requeriment;
+use Illuminate\Database\Eloquent\Collection;
 
 interface RequerimentRepositoryInterface
 {
-    public function getAll();
-    public function createRequeriment(array $data);
-    public function getRequerimentById(string $id);
+    public function getAll(): Collection;
+    public function createRequeriment(array $data): bool;
+    public function getRequerimentById(string $id): Collection|null;
     public function updateRequeriment(Requeriment $requeriment, string $id);
     public function deleteRequeriment(Requeriment $requeriment,string $id);
     public function filterRequeriment(array $data);
