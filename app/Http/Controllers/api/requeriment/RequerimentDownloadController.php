@@ -5,7 +5,6 @@ namespace App\Http\Controllers\api\requeriment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\requeriment\RequerimentRequest;
 use App\Services\requeriment\RequerimentService;
-use Illuminate\Http\Request;
 
 class RequerimentDownloadController extends Controller
 {
