@@ -29,9 +29,15 @@ class RequerimentService
         return $this->requerimentRepository->getRequerimentById($id);
     }
 
-    public function updateRequeriment(array $data, string $id)
+    public function updateRequeriment(array $data, string $id): bool
     {
-        return $this->requerimentRepository->updateRequeriment($data, $id);
+        $requeriment = $this->requerimentRepository->getRequerimentById($id);
+
+        if(!$requeriment){
+            return false;
+        }
+
+        return $this->requerimentRepository->updateRequeriment($requeriment, $data);
     }
 
     public function deleteRequeriment(string $id)
