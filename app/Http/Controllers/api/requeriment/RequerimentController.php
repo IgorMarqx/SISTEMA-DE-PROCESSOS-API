@@ -74,6 +74,10 @@ class RequerimentController extends Controller
     {
         $requeriment = $this->requerimentService->updateRequeriment($request, $id);
 
+        if(!$requeriment){
+            return new GlobalResource(['error' => true, 'message' => 'Requeriment not found'], 404);
+        }
+
         try {
             return new GlobalResource(['error' => false, 'message' => $requeriment], 200);
         } catch (Exception $e) {
@@ -83,9 +87,20 @@ class RequerimentController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @throws Exception
      */
-    public function destroy(string $id)
+    public function destroy(string $id): GlobalResource
     {
-        //
+        $requeriment = $this->requerimentService->deleteRequeriment($id);
+
+        if(!$requeriment){
+            return new GlobalResource(['error' => true, 'message' => 'Requeriment not found'], 404);
+        }
+
+        try {
+            return new GlobalResource(['error' => false, 'message' => 'Requeriment deleted succesfully'], 200);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 }
