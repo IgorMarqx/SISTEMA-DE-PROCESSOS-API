@@ -39,9 +39,9 @@ class RequerimentRepository implements RequerimentRepositoryInterface
         ]);
     }
 
-    public function deleteRequeriment(Requeriment $requeriment, string $id)
+    public function deleteRequeriment(Requeriment $requeriment): bool
     {
-        // TODO: Implement deleteRequeriment() method.
+        return $requeriment->delete();
     }
 
     public function filterRequeriment(array $data)
