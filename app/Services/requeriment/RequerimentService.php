@@ -40,7 +40,7 @@ class RequerimentService
         return $this->requerimentRepository->updateRequeriment($requeriment, $data);
     }
 
-    public function deleteRequeriment(string $id)
+    public function deleteRequeriment($id): bool
     {
         return $this->requerimentRepository->deleteRequeriment($id);
     }
