@@ -74,7 +74,7 @@ class RequerimentController extends Controller
     {
         $requeriment = $this->requerimentService->updateRequeriment($request, $id);
 
-        if(!$requeriment){
+        if(!$requeriment) {
             return new GlobalResource(['error' => true, 'message' => 'Requeriment not found'], 404);
         }
 
@@ -93,7 +93,7 @@ class RequerimentController extends Controller
     {
         $requeriment = $this->requerimentService->deleteRequeriment($id);
 
-        if(!$requeriment){
+        if(!$requeriment) {
             return new GlobalResource(['error' => true, 'message' => 'Requeriment not found'], 404);
         }
 
